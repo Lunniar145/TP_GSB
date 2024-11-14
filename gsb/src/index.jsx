@@ -1,35 +1,47 @@
 import React, { useState } from 'react'
 import './index.css'
 import logo from '../src/pages/GSB.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Form, Link, useNavigate } from 'react-router-dom'
 
 function Index() {
     const navigate = useNavigate()
     const [error, setError] = useState('') // État pour gérer le message d'erreur
 
-    var isAuthenticated = false
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault() // Empêche le rechargement de la page
 
         // Récupération de la valeur du mot de passe
         const mdp = event.target.elements.password.value
+        const login = event.target.elements.login.value
 
-        // Vérification de la longueur du mot de passe
-        if (mdp.length < 8) {
-            setError('Mot de passe pas assez long !')
-            console.log('Test')
-        } else {
-            setError('')
-            console.log('Succès!')
-            isAuthenticated = true
-        }
+        setError('Login ou mot de passe incorrect !')
 
-        if (isAuthenticated) {
-            // Redirige vers la page d'accueil
-            navigate('/acceuil')
+        getVisiteur(form.get('login'), form.get('password')).then(response => {
+            if (response.data != null) {
+                console.log(response.data)
+            } else {
+                setError(true)
+            }
+        })
+    }
+
+    async function getVisiteur(leLogin, leMdp) {
+        try {
+            const response = await api.get('/connexion', {
+                params: {
+                    login,
+                    mdp,
+                },
+            })
+            return response
+        } catch (error) {
+            console.log('Erreur de connexion API')
+            return null // Vous pouvez retourner null ou une autre valeur en cas d'échec
         }
     }
+
     return (
         <div className='flex items-center justify-center h-screen bg-gray-100'>
             <div className='bg-white p-8 rounded-lg shadow-lg w-full max-w-sm text-center'>
