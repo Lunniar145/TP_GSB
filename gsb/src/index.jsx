@@ -17,23 +17,28 @@ function Index() {
         const mdp = event.target.elements.password.value
         const login = event.target.elements.login.value
 
-        setError('Login ou mot de passe incorrect !')
-
-        getVisiteur(Form.get('login'), Form.get('password')).then(response => {
-            if (response.data != null) {
-                console.log(response.data)
-            } else {
-                setError(true)
-            }
-        })
+        getVisiteur(login, mdp)
+            .then(response => {
+                if (response.data != null) {
+                    console.log(response.data)
+                    setIsAuthenticated(true)
+                    navigate('/acceuil')
+                } else {
+                    setError('Login ou mot de passe incorrect !')
+                }
+            })
+            .catch(error => {
+                console.error('Erreur de connexion API', error)
+                setError('Erreur de connexion, veuillez réessayer.')
+            })
     }
 
     async function getVisiteur(leLogin, leMdp) {
         try {
             const response = await API.get('/connexion', {
                 params: {
-                    leLogin,
-                    leMdp,
+                    login: leLogin,
+                    mdp: leMdp,
                 },
             })
             return response

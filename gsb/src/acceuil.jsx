@@ -1,21 +1,30 @@
 import React from 'react'
 import './index.css'
+import logo from '../src/pages/GSB.png'
 import { Link } from 'react-router-dom'
 
 function Acceuil() {
     return (
-        <div className='flex items-center justify-center h-screen bg-gray-100'>
-            <div className='bg-white p-8 rounded-lg shadow-lg w-full max-w-sm text-center'>
-                <h1 className='text-2xl font-semibold text-gray-800 mb-6'>Bienvenue sur la page d'accueil</h1>
-                <p className='text-gray-600 mb-4'>Vous êtes connecté avec succès !</p>
-                <Link
-                    to='/'
-                    className='bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-500'
-                >
-                    Retour à l'index
-                </Link>
+        <header>
+            <div className='bg-blue-700 p-3'>
+                <ul className=' flex m-3'>
+                    <img src={logo} alt='' className='text-2xl h-8 w-auto' />
+
+                    <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
+                        <a href=''>Dashboard</a>
+                    </li>
+                    <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
+                        <a href=''>Dashboard</a>
+                    </li>
+                    <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
+                        <a href=''>Dashboard</a>
+                    </li>
+                    <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
+                        <a href=''>Dashboard</a>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </header>
     )
 }
 
