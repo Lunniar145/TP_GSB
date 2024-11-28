@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './index.css'
+import API from './api/api'
 import logo from '../src/pages/GSB.png'
 import { Form, Link, useNavigate } from 'react-router-dom'
 
@@ -18,7 +19,7 @@ function Index() {
 
         setError('Login ou mot de passe incorrect !')
 
-        getVisiteur(form.get('login'), form.get('password')).then(response => {
+        getVisiteur(Form.get('login'), Form.get('password')).then(response => {
             if (response.data != null) {
                 console.log(response.data)
             } else {
@@ -29,16 +30,16 @@ function Index() {
 
     async function getVisiteur(leLogin, leMdp) {
         try {
-            const response = await api.get('/connexion', {
+            const response = await API.get('/connexion', {
                 params: {
-                    login,
-                    mdp,
+                    leLogin,
+                    leMdp,
                 },
             })
             return response
         } catch (error) {
             console.log('Erreur de connexion API')
-            return null // Vous pouvez retourner null ou une autre valeur en cas d'échec
+            return null
         }
     }
 
@@ -55,7 +56,7 @@ function Index() {
 
                 <h3 className='text-lg font-medium text-gray-800 bg-gray-200 mb-6'>Identifiez vous</h3>
 
-                <form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <div className='mb-4 text-left'>
                         <label className='block font-medium text-gray-600 mb-1' htmlFor='login'>
                             Identifiant
@@ -92,7 +93,7 @@ function Index() {
                             {error}
                         </div>
                     )}
-                </form>
+                </Form>
             </div>
         </div>
     )
