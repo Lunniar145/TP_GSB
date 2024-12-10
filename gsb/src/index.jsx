@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './index.css'
-import API from './api/api'
-import logo from '../src/pages/GSB.png'
+import API from './api/api.js'
+import logo from './assets/GSB.png'
 import { Form, Link, useNavigate } from 'react-router-dom'
 
 function Index() {
