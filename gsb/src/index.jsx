@@ -21,6 +21,7 @@ function Index() {
             .then(response => {
                 if (response.data != null) {
                     console.log(response.data)
+                    localStorage.setItem('user', JSON.stringify(response.data))
                     setIsAuthenticated(true)
                     navigate('/acceuil')
                 } else {

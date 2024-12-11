@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import ReactDOM from 'react-dom/client'
 import { StrictMode } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -15,15 +15,17 @@ const router = createBrowserRouter([
 
     {
         path: '/acceuil',
-        element: <Acceuil />,
-    },
-    {
-        path: '/medecin',
-        element: <Medecin />,
-    },
-    {
-        path: '/rapport',
-        element: <Rapport />,
+        element: <Acceuil />, // Ce composant contient la Navbar et l'Outlet
+        children: [
+            {
+                path: 'medecin',
+                element: <Medecin />,
+            },
+            {
+                path: 'rapport',
+                element: <Rapport />,
+            },
+        ],
     },
 ])
 

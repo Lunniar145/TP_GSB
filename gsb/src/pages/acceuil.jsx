@@ -1,32 +1,37 @@
 import React from 'react'
+import axios from 'axios'
 import '../index.css'
+import Navbar from '../components/navbar'
+import API from '../api/api'
 import logo from '../assets/GSB.png'
 import decoIcon from '../assets/IconLogout.png'
-import { Link } from 'react-router-dom'
-
+import { useState, useEffect } from 'react'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 function Acceuil() {
+    const [user, setUser] = useState(null)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        // Récupérer les informations utilisateur depuis localStorage
+        const storedUser = JSON.parse(localStorage.getItem('user'))
+        if (storedUser) {
+            setUser(storedUser)
+        } else {
+            navigate('/')
+        }
+    }, [navigate])
+
+    const nom = user ? user.nom : 'Utilisateur'
+    const prenom = user ? user.prenom : ''
+
     return (
-        <header>
-            <div className='bg-blue-700 p-3 '>
-                <ul className=' flex m-3'>
-                    <img src={logo} alt='' className='text-2xl h-8 w-auto' />
-
-                    <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
-                        <a href='#'>Dashboard</a>
-                    </li>
-                    <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
-                        <Link to={'rapport'}>Rapport</Link>
-                    </li>
-                    <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
-                        <Link to={'medecin'}>Medecin</Link>
-                    </li>
-
-                    <Link to={'/'} className='flex ml-auto'>
-                        <img className='text-2xl h-8 w-auto' src={decoIcon} alt='' />
-                    </Link>
-                </ul>
-            </div>
-        </header>
+        <>
+            <Navbar />
+            <h1 id='TextTest'>
+                Bonjour, {nom} {prenom}{' '}
+            </h1>
+            <Outlet />
+        </>
     )
 }
 
