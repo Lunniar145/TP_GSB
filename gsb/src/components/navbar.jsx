@@ -26,7 +26,7 @@ function Navbar({ state }) {
                         <img src={logo} alt='' className='text-2xl h-8 w-auto' />
 
                         <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
-                            <a href='#'>Dashboard</a>
+                            <Link to={'/acceuil'}>Dashboard</Link>
                         </li>
                         <li className=' ml-3 mr-3 text-white hover:bg-black rounded-md p-1.5'>
                             <Link to={'rapport'}>Rapport</Link>
