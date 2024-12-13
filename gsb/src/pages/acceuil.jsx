@@ -6,7 +6,8 @@ import API from '../api/api'
 import logo from '../assets/GSB.png'
 import decoIcon from '../assets/IconLogout.png'
 import { useState, useEffect } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { createContext, Link, Outlet, useNavigate } from 'react-router-dom'
+export const VisiteurContext = createContext(null)
 function Acceuil() {
     const [user, setUser] = useState(null)
     const navigate = useNavigate()

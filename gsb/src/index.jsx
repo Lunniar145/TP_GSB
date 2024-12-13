@@ -11,7 +11,7 @@ function Index() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     async function handleSubmit(event) {
-        event.preventDefault() // Empêche le rechargement de la page
+        event.preventDefault()
 
         // Récupération de la valeur du mot de passe
         const mdp = event.target.elements.password.value
