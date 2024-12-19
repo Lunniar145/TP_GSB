@@ -1,41 +1,54 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 
 function GetVisiteur() {
-    const [visiteur, setVisiteur] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const [userData, setUserData] = useState(null)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await API.get('/connexion')
-                setVisiteur(response.data) // Stocker les données
-                setLoading(false) // Arrêter le chargement
-            } catch (err) {
-                setError('Erreur lors de la récupération des données.')
-                setLoading(false)
-            }
+        // Récupération des données du localStorage
+        const storedUser = localStorage.getItem('user')
+        if (storedUser) {
+            setUserData(JSON.parse(storedUser))
         }
+    }, [])
 
-        fetchData()
-    }, []) // Exécuté une seule fois au montage du composant
-
-    if (loading) return <p>Chargement...</p>
-    if (error) return <p>{error}</p>
+    if (!userData) {
+        return <p>Chargement des données...</p>
+    }
 
     return (
-        <div>
-            <h1>Informations du Visiteur</h1>
-            {visiteur && (
-                <div>
-                    <p>Nom : {visiteur.nom}</p>
-                    <p>Prénom : {visiteur.prenom}</p>
-                    <p>Adresse : {visiteur.adresse}</p>
-                    <p>Ville : {visiteur.ville}</p>
+        <>
+            <div>
+                <h1>hahahah</h1>
+
+                <div className='p-8 bg-gray-100 min-h-screen'>
+                    <h1 className='text-2xl font-bold mb-4'>
+                        Rapport pour {userData.prenom} {userData.nom}
+                    </h1>
+                    <div className='bg-white p-6 rounded-lg shadow-md'>
+                        <ul>
+                            <li>
+                                <strong>0 :</strong> {userData.cp}
+                            </li>
+                            <li>
+                                <strong>Adresse :</strong> {userData.adresse}
+                            </li>
+                            <li>
+                                <strong>Ville :</strong> {userData.ville}
+                            </li>
+                            <li>
+                                <strong>ID :</strong> {userData.id}
+                            </li>
+                            <li>
+                                <strong>Adresse :</strong> {userData.adresse}
+                            </li>
+                            <li>
+                                <strong>Ville :</strong> {userData.ville}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            )}
-        </div>
+            </div>
+        </>
     )
 }
 
