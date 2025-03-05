@@ -58,7 +58,6 @@ function Index() {
                         src={logo}
                         alt='Galaxy Swiss Bourdin'
                     />
-                    getVisiteur
                 </div>
 
                 <h3 className='text-lg font-medium text-gray-800 bg-gray-200 mb-6'>Identifiez vous</h3>
