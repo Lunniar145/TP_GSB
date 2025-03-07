@@ -17,6 +17,21 @@ function Index() {
         const mdp = event.target.elements.password.value
         const login = event.target.elements.login.value
 
+        async function getVisiteur(leLogin, leMdp) {
+            try {
+                const response = await API.get('/connexion', {
+                    params: {
+                        login: leLogin,
+                        mdp: leMdp,
+                    },
+                })
+                return response
+            } catch (error) {
+                console.log('Erreur de connexion API')
+                return null
+            }
+        }
+
         getVisiteur(login, mdp)
             .then(response => {
                 if (response.data != null) {
@@ -34,25 +49,10 @@ function Index() {
             })
     }
 
-    async function getVisiteur(leLogin, leMdp) {
-        try {
-            const response = await API.get('/connexion', {
-                params: {
-                    login: leLogin,
-                    mdp: leMdp,
-                },
-            })
-            return response
-        } catch (error) {
-            console.log('Erreur de connexion API')
-            return null
-        }
-    }
-
     return (
         <div className='flex items-center justify-center h-screen bg-gray-100'>
             <div className='bg-white p-8 rounded-lg shadow-lg w-full max-w-sm text-center'>
-                <div className='flex flex-col items-center mb-6'>
+                <div className='flex flex-col items-center mb-6 '>
                     <img
                         className='text-2xl font-semibold text-gray-700 mt-2'
                         src={logo}
@@ -71,7 +71,7 @@ function Index() {
                             id='login'
                             type='text'
                             placeholder='Identifiant'
-                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-500'
+                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-transparent focus: scale-125 transition-transform duration-300'
                         />
                     </div>
 
@@ -83,7 +83,7 @@ function Index() {
                             id='password'
                             type='password'
                             placeholder='Mot de passe'
-                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-500'
+                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-transparent focus: scale-125 transition-transform duration-300'
                         />
                     </div>
 

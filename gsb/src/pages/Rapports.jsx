@@ -25,22 +25,40 @@ function GetVisiteur() {
                     <div className='bg-white p-6 rounded-lg shadow-md'>
                         <ul>
                             <li>
-                                <strong>0 :</strong> {userData.cp}
+                                <strong>0 :</strong> {userData.id}
                             </li>
                             <li>
-                                <strong>Adresse :</strong> {userData.adresse}
+                                <strong>1 :</strong> {userData.nom}
                             </li>
                             <li>
-                                <strong>Ville :</strong> {userData.ville}
+                                <strong>2 :</strong> {userData.prenom}
+                            </li>
+                            <li>
+                                <strong>3 :</strong> {userData.adresse}
+                            </li>
+                            <li>
+                                <strong>4 :</strong> {userData.cp}
+                            </li>
+                            <li>
+                                <strong>5 :</strong> {userData.ville}
                             </li>
                             <li>
                                 <strong>ID :</strong> {userData.id}
                             </li>
                             <li>
+                                <strong>Nom :</strong> {userData.nom}
+                            </li>
+                            <li>
+                                <strong>Prénom :</strong> {userData.prenom}
+                            </li>
+                            <li>
                                 <strong>Adresse :</strong> {userData.adresse}
                             </li>
                             <li>
-                                <strong>Ville :</strong> {userData.ville}
+                                <strong>CP :</strong> {userData.cp}
+                            </li>
+                            <li>
+                                <strong>ville :</strong> {userData.ville}
                             </li>
                         </ul>
                     </div>

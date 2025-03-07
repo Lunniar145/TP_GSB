@@ -35,7 +35,11 @@ function Navbar({ state }) {
                         </li>
 
                         <Link to={'/'} className='flex ml-auto'>
-                            <img className='text-2xl h-8 w-auto' src={decoIcon} alt='' />
+                            <img
+                                className='text-2xl h-8 w-auto hover:scale-125 transition-transform duration-300'
+                                src={decoIcon}
+                                alt=''
+                            />
                         </Link>
                     </ul>
                 </div>

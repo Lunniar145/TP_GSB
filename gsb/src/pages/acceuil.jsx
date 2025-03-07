@@ -17,8 +17,8 @@ function Acceuil() {
         }
     }, [navigate])
 
-    const nom = user ? user.nom : 'Utilisateur'
-    const prenom = user ? user.prenom : ''
+    const nom = user ? user.nom : ' N/A'
+    const prenom = user ? user.prenom : 'N/A'
 
     return (
         <>
