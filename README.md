@@ -15,8 +15,8 @@ Ce projet est une application web développée avec **React** permettant aux pat
 ##  Technologies Utilisées
 
 - **Frontend** : React, React Router, Tailwind CSS  
-- **Backend** : (exemple : Node.js avec Express, Firebase, etc.)  
-- **Base de données** : (exemple : MongoDB, Firebase Firestore, PostgreSQL)  
+- **Backend** : AXIOS  
+- **Base de données** : MySQL  
 
 ##  Installation et Lancement
 
