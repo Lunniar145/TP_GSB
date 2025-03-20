@@ -1,41 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
 import API from '../api/api.js'
-import { useEffect, useState } from 'react'
 import '../index.css'
+import { json } from 'react-router-dom'
 
 function Medecin() {
-    async function getMedecins() {
+    const [medecins, setMedecins] = useState([])
+    const [search, setSearch] = useState('')
+    const [isSearching, setIsSearching] = useState(false)
+
+    async function fetchMedecins(nom) {
+        if (!nom) {
+            setMedecins([])
+            setIsSearching(false)
+            return
+        }
+        setIsSearching(true)
         try {
-            const response = await API.get('/medecin')
-            console.log(response)
+            const response = await API.get('/medecins', {
+                params: { nom },
+            })
+            setMedecins(response.data)
             console.log(response.data)
-            return response.data
         } catch (error) {
-            console.log('Erreur lors de la récupération des médecins', error)
-            return null
+            console.error('Erreur lors de la récupération des médecins', error)
+            setMedecins([])
         }
     }
-    const [medecins, setMedecins] = useState([])
 
-    useEffect(() => {
-        async function fetchMedecins() {
-            const data = await getMedecins()
-            if (data) {
-                setMedecins(data)
-            }
-        }
-        fetchMedecins()
-    }, [])
     return (
         <div>
-            <h2>Liste des Médecins</h2>
-            <ul>
-                {medecins.map(medecin => (
-                    <li key={medecin.id}>
-                        {medecin.nom} {medecin.prenom}
-                    </li>
-                ))}
-            </ul>
+            <h2>Rechercher un médecin</h2>
+
+            <div className='flex flex-col p-4 bg-white rounded-lg shadow-md justify-center w-5/12'>
+                <input
+                    type='text'
+                    placeholder='Tapez un nom...'
+                    value={search}
+                    onChange={e => {
+                        const value = e.target.value
+                        setSearch(value)
+                        fetchMedecins(value)
+                    }}
+                    className=' border p-2 mb-4'
+                />
+                {isSearching && (
+                    <ul className=' bg-gray-100 p-4 rounded-lg shadow-md'>
+                        {medecins.length > 0 ? (
+                            medecins.map(medecin => (
+                                <li className=' hover:bg-gray-200' key={medecin.id}>
+                                    <a href=''>
+                                        {medecin.nom} {medecin.prenom}
+                                    </a>
+                                </li>
+                            ))
+                        ) : (
+                            <li>Aucun médecin trouvé</li>
+                        )}
+                    </ul>
+                )}
+            </div>
         </div>
     )
 }

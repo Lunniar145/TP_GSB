@@ -34,6 +34,9 @@ function Navbar({ state }) {
                             <Link to={'medecin'}>Medecin</Link>
                         </li>
 
+                        <div>
+                            <img src='' alt='logo' className='border bg-white rounded-full' />
+                        </div>
                         <Link to={'/'} className='flex ml-auto'>
                             <img
                                 className='text-2xl h-8 w-auto hover:scale-125 transition-transform duration-300'

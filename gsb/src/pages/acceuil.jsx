@@ -8,7 +8,6 @@ function Acceuil() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        // Récupérer les informations utilisateur depuis localStorage
         const storedUser = JSON.parse(localStorage.getItem('user'))
         if (storedUser) {
             setUser(storedUser)
@@ -23,7 +22,7 @@ function Acceuil() {
     return (
         <>
             <Navbar />
-            <h1 id='TextTest'>
+            <h1 className='text-2xl font-bold'>
                 Bonjour, {nom} {prenom}{' '}
             </h1>
             <Outlet />
