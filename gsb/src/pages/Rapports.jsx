@@ -21,12 +21,9 @@ function GetVisiteur() {
     return (
         <div className=' bg-gray-50 p-6 flex items-center justify-center'>
             <div className='max-w-2xl w-full bg-white p-6 rounded-lg shadow-md'>
-                {/* Titre */}
                 <h1 className='text-2xl font-bold text-center text-blue-600 mb-4'>
                     Rapport de {userData.prenom} {userData.nom}
                 </h1>
-
-                {/* Affichage brut mais propre */}
                 <div className='bg-gray-100 p-6 rounded-md shadow-inner text-sm text-gray-800 font-mono whitespace-pre-line'>
                     {Object.entries(userData).map(([key, value]) => (
                         <p key={key}>
