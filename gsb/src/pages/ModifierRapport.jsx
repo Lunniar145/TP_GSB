@@ -32,12 +32,12 @@ response.data.forEach((r, index) => {
 
             if (Array.isArray(response.data)) {
                 const rapportsCorriges = response.data.map(r => ({
-                    id: r[0],
-                    nom: r[1],
-                    prenom: r[2],
-                    date: r[3],
-                    motif: r[4],
-                    bilan: r[5]
+                    id: r.idRapport,
+    nom: r.nomMedecin,
+    prenom: r.prenomMedecin,
+    date: r.date,
+    motif: r.motif,
+    bilan: r.bilan
                 }))
                 setRapports(rapportsCorriges)
             } else {
@@ -61,6 +61,11 @@ response.data.forEach((r, index) => {
 
     const handleUpdate = async () => {
         try {
+            console.log("Données envoyées :", {
+                id: formData.id,
+                motif: formData.motif,
+                bilan: formData.bilan
+              })              
             await API.put('/majRapports', {
                 id: formData.id,
                 motif: formData.motif,
@@ -123,13 +128,14 @@ response.data.forEach((r, index) => {
             {rapports.length > 0 && (
                 <ul className="mt-6 space-y-2">
                     {rapports.map((r, index) => (
-                        <li
-                            key={index}
-                            onClick={() => handleSelect(r)}
-                            className="p-2 border rounded hover:bg-gray-100 cursor-pointer"
-                        >
-                            {formatDateSafe(r.date)} – {r.motif}
-                        </li>
+                         <li
+                         key={index}
+                         onClick={() => handleSelect(r)}
+                         className="cursor-pointer bg-white border border-gray-300 rounded p-3 shadow-sm hover:bg-blue-50 hover:border-blue-400 transition duration-200"
+                     >
+                         {r.motif}
+                     </li>
+                      
                     ))}
                 </ul>
             )}

@@ -71,7 +71,7 @@ function Index() {
                             id='login'
                             type='text'
                             placeholder='Identifiant'
-                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-transparent focus: scale-125 transition-transform duration-300'
+                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-transparent focus:scale-110 transition-transform duration-300'
                         />
                     </div>
 
@@ -83,7 +83,7 @@ function Index() {
                             id='password'
                             type='password'
                             placeholder='Mot de passe'
-                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-transparent focus: scale-125 transition-transform duration-300'
+                            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-transparent focus:scale-110 transition-transform duration-300'
                         />
                     </div>
 
