@@ -29,9 +29,9 @@ function Medecin() {
 
     function selectMedecin(medecin) {
         setMedecins([])
-        setSearch(`${medecin.nom} ${medecin.prenom}`)
+        setSearch(``)
         setIsSearching(false)
-        setSelectedMedecin(medecin) // Stocke le médecin sélectionné
+        setSelectedMedecin(medecin)
     }
 
     return (
@@ -70,24 +70,7 @@ function Medecin() {
                 )}
             </div>
 
-            {selectedMedecin && (
-                <FicheMedcin medecin={selectedMedecin} />
-
-                /*
-                <div className='bg-white p-6 mt-6 rounded-lg shadow-md max-w-lg mx-auto'>
-                    <h1 className='text-xl font-bold text-center text-blue-600 mb-4'>
-                        Médecin {selectedMedecin.nom} {selectedMedecin.prenom}
-                    </h1>
-                    <div className='bg-gray-100 p-4 rounded-md shadow-inner text-sm text-gray-800 font-mono'>
-                        {Object.entries(selectedMedecin).map(([key, value]) => (
-                            <p key={key}>
-                                <strong className='capitalize'>{key} :</strong> {value}
-                            </p>
-                        ))}
-                    </div>
-                </div>
-                */
-            )}
+            {selectedMedecin && <FicheMedcin medecin={selectedMedecin} />}
         </div>
     )
 }

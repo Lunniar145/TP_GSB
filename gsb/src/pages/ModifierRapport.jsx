@@ -32,7 +32,7 @@ export default function ModifierRapport() {
 
             if (Array.isArray(response.data)) {
                 const rapportsCorriges = response.data.map(r => ({
-                    id: r.idRapport,
+                    idRapport: r.idRapport,
                     nom: r.nomMedecin,
                     prenom: r.prenomMedecin,
                     date: r.date,
@@ -61,13 +61,18 @@ export default function ModifierRapport() {
 
     const handleUpdate = async () => {
         try {
-            console.log('Données envoyées :', {
-                id: formData.id,
+            await API.put('/majRapports', {
+                idRapport: formData.idRapport,
+                idVisiteur: formData.id,
                 motif: formData.motif,
                 bilan: formData.bilan,
             })
-            await API.put('/majRapports', {
-                id: formData.id,
+            fetchRapports()
+            setSelectedRapport(null)
+            setFormData({})
+            console.log('Données envoyées :', {
+                idRapport: formData.idRapport,
+                idVisiteur: formData.idVisiteur,
                 motif: formData.motif,
                 bilan: formData.bilan,
             })

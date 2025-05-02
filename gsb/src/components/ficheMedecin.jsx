@@ -8,6 +8,12 @@ export default function FicheMedecin({ medecin }) {
     const [formData, setFormData] = useState({ ...medecin })
     const [message, setMessage] = useState(null)
 
+    // 🟡 Quand un nouveau médecin est sélectionné, on met à jour le formulaire
+    useEffect(() => {
+        setFormData({ ...medecin })
+        setMessage(null) // Réinitialise les messages d’alerte
+    }, [medecin])
+
     function formatPhoneNumber(value) {
         return value
             .replace(/\D/g, '')
@@ -29,7 +35,7 @@ export default function FicheMedecin({ medecin }) {
             setMessage({ type: 'success', text: 'Médecin modifié avec succès !' })
         } catch (error) {
             console.error(error)
-            setMessage({ type: 'error', text: "Erreur lors de la mise à jour." })
+            setMessage({ type: 'error', text: 'Erreur lors de la mise à jour.' })
         }
     }
 
@@ -38,17 +44,13 @@ export default function FicheMedecin({ medecin }) {
             <div className='bg-white p-6 mt-6 rounded-lg shadow-md max-w-2xl mx-auto'>
                 <div className='flex justify-center mb-6'>
                     <button
-                        className={`text-xl font-bold p-2 border rounded-md mx-2 ${
-                            buttonSelect === 'fiche' ? 'bg-blue-100' : ''
-                        }`}
+                        className={`text-xl font-bold p-2 border rounded-md mx-2 ${buttonSelect === 'fiche' ? 'bg-blue-100' : ''}`}
                         onClick={() => setButtonSelect('fiche')}
                     >
                         Fiche médecin
                     </button>
                     <button
-                        className={`text-xl font-bold p-2 border rounded-md mx-2 ${
-                            buttonSelect === 'rapports' ? 'bg-blue-100' : ''
-                        }`}
+                        className={`text-xl font-bold p-2 border rounded-md mx-2 ${buttonSelect === 'rapports' ? 'bg-blue-100' : ''}`}
                         onClick={() => setButtonSelect('rapports')}
                     >
                         Rapport médecin
@@ -129,9 +131,7 @@ export default function FicheMedecin({ medecin }) {
                     </div>
                 )}
 
-                {buttonSelect === 'rapports' && (
-                    <Rapports idMedecin={medecin.id} />
-                )}
+                {buttonSelect === 'rapports' && <Rapports idMedecin={medecin.id} />}
             </div>
         </>
     )
