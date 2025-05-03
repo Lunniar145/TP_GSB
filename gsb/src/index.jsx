@@ -6,14 +6,13 @@ import { Form, Link, useNavigate } from 'react-router-dom'
 
 function Index() {
     const navigate = useNavigate()
-    const [error, setError] = useState('') // État pour gérer le message d'erreur
+    const [error, setError] = useState('')
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     async function handleSubmit(event) {
         event.preventDefault()
 
-        // Récupération de la valeur du mot de passe
         const mdp = event.target.elements.password.value
         const login = event.target.elements.login.value
 

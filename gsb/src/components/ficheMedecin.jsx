@@ -122,6 +122,19 @@ export default function FicheMedecin({ medecin }) {
                             />
                         </div>
 
+                        <div>
+    <label>Spécialité complémentaire :</label>
+    <input
+        type='text'
+        name='specialitecomplementaire'
+        value={formData.specialitecomplementaire || ''}
+        onChange={handleChange}
+        className='border p-2 rounded-md w-full'
+    />
+</div>
+
+
+
                         <button
                             onClick={handleSubmit}
                             className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4'

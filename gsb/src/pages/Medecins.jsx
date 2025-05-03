@@ -38,37 +38,45 @@ function Medecin() {
         <div className='p-6'>
             <h2 className='text-2xl font-semibold mb-4'>Rechercher un médecin</h2>
 
-            <div className='flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-md'>
-                <input
-                    type='text'
-                    placeholder='Tapez un nom...'
-                    value={search}
-                    onChange={e => {
-                        const value = e.target.value
-                        setSearch(value)
-                        fetchMedecins(value)
-                    }}
-                    className='border p-2 rounded-md w-full max-w-md'
-                />
+            <div className='flex flex-col items-center bg-white p-6 rounded-xl shadow-lg w-full max-w-xl mx-auto'>
+    {/* Champ de recherche */}
+    <div className='relative w-full'>
+        <input
+            type='text'
+            placeholder='Rechercher un médecin par nom...'
+            value={search}
+            onChange={e => {
+                const value = e.target.value
+                setSearch(value)
+                fetchMedecins(value)
+            }}
+            className='w-full px-4 py-3 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-700 placeholder-gray-400'
+        />
+    </div>
 
-                {isSearching && (
-                    <ul className='bg-white p-4 mt-2 rounded-lg shadow-md w-full max-w-md'>
-                        {medecins.length > 0 ? (
-                            medecins.map(medecin => (
-                                <li
-                                    key={medecin.id}
-                                    className='hover:bg-gray-200 p-2 cursor-pointer'
-                                    onClick={() => selectMedecin(medecin)}
-                                >
-                                    {medecin.nom} {medecin.prenom}
-                                </li>
-                            ))
-                        ) : (
-                            <li className='text-gray-500'>Aucun médecin trouvé</li>
-                        )}
-                    </ul>
+    {/* Liste déroulante avec défilement */}
+    {isSearching && (
+        <div className='w-full mt-3 max-h-60 overflow-y-auto rounded-lg border border-gray-200 shadow-md bg-white'>
+            <ul>
+                {medecins.length > 0 ? (
+                    medecins.map(medecin => (
+                        <li
+                            key={medecin.id}
+                            className='px-4 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-150'
+                            onClick={() => selectMedecin(medecin)}
+                        >
+                            {medecin.nom} {medecin.prenom}
+                        </li>
+                    ))
+                ) : (
+                    <li className='px-4 py-2 text-gray-500'>Aucun médecin trouvé</li>
                 )}
-            </div>
+            </ul>
+        </div>
+    )}
+</div>
+
+
 
             {selectedMedecin && <FicheMedcin medecin={selectedMedecin} />}
         </div>
